@@ -1,8 +1,5 @@
 require 'minitest/spec'
-require 'simplecov'
+require 'codeclimate-test-reporter'
 require 'minitest/autorun'
 
-SimpleCov.start do
-  add_filter '/spec/'
-  command_name 'MiniTest'
-end
+CodeClimate::TestReporter.start

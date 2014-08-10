@@ -5,3 +5,6 @@ rvm:
  - 2.1.2
  - jruby-19mode
 script: bundle exec rake test
+addons:
+ code_climate:
+  repo_token: f8aaf329b9e3e6ae1d8b23eba7a257e5a1376a852281e12e0a178982539887f7
