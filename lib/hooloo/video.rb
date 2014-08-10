@@ -1,4 +1,5 @@
 class Hooloo::Video < Hooloo::MozartHash
+  # @param id [Fixnum]
   def initialize(id)
     super
     if id.is_a? Fixnum

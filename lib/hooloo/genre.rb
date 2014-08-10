@@ -7,7 +7,7 @@ class Hooloo::Genre < Hooloo::MozartHash
       @obj = obj
     end
   end
-  def shows(args={limit: 10, position: 0})
+  def shows(args={items_per_page: 10, position: 0})
     args.merge!({genre: canonical_name})
     Hooloo.request('shows', args)['data'].map { |x| Hooloo::Show.new x['show'] }
   end
