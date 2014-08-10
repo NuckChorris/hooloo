@@ -1,7 +1,5 @@
-require 'minitest'
-require 'minitest/autorun'
-
-require 'hooloo'
+require 'spec_helper'
+require 'hooloo/show'
 
 describe Hooloo::Show do
   describe 'Popular Today' do
