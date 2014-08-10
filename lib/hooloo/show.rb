@@ -7,6 +7,8 @@ class Hooloo::Show < Hooloo::MozartHash
     super
     if id.is_a? Fixnum
       @obj = Hooloo.request("shows/#{id}")['data'][0]['show']
+    elsif id.is_a? Hash
+      @obj = id
     end
   end
   def videos(season=1)
