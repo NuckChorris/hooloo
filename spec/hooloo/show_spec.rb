@@ -9,10 +9,7 @@ describe Hooloo::Show do
     end
   end
   describe 'Loading' do
-    let(:show) { Hooloo::Show.popular_today[0] }
-    it 'should convert cache_time to a Time object' do
-      show.cache_time.must_be_instance_of Time
-    end
+    let(:show) { Hooloo::Show.new 11876 }
     it 'should convert company to a Company object' do
       show.company.must_be_instance_of Hooloo::Company
     end
