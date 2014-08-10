@@ -26,6 +26,6 @@ an unofficial PHP client for this same API.
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "mocha"
+  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "fakeweb"
 end
