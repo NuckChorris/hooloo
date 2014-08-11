@@ -2,13 +2,13 @@ class Hooloo::Genre < Hooloo::MozartHash
   def initialize(obj)
     super
     if obj.is_a? String
-      @obj = {canonical_name: obj}
+      @obj = {'canonical_name' => obj}
     else
       @obj = obj
     end
   end
   def shows(args={items_per_page: 10, position: 0})
-    args.merge!({genre: canonical_name})
+    args.merge!({genre: canonical_name, sort: 'release_with_popularity'})
     Hooloo.request('shows', args)['data'].map { |x| Hooloo::Show.new x['show'] }
   end
   # List all genres known to Hulu
