@@ -6,6 +6,9 @@ class Hooloo::Video < Hooloo::MozartHash
       @obj = Hooloo.request("videos/#{id}")['data'][0]['video']
     end
   end
+  def oembed
+    Hooloo.request '/api/oembed.json', url: "http://www.hulu.com/watch/#{@obj['id']}"
+  end
   def copyright
     @obj['copyright'].split(',').map(&:strip)
   end
