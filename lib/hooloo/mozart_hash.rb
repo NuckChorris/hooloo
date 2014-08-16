@@ -21,6 +21,16 @@ class Hooloo::MozartHash
         define_method(field.to_s + '?') { @obj[mapping] }
       end
     end
+    def uri(*mappings)
+      field_mapping(mappings).each do |field, mapping|
+        define_method(field.to_s) { URI @obj[mapping.to_s] }
+      end
+    end
+    def float(*mappings)
+      field_mapping(mappings).each do |field, mapping|
+        define_method(field.to_s) { @obj[mapping.to_s].to_f }
+      end
+    end
     def cast(klass, mappings, opts={map_array: true, map: false})
       field_mapping(mappings).each do |field, mapping|
         define_method(field) do

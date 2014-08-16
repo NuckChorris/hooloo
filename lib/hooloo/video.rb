@@ -15,6 +15,6 @@ class Hooloo::Video < Hooloo::MozartHash
   date :available_at, :cache_time, :original_premiere_date, :released_at
   bool :embed_permitted, :has_captions, :has_hd, :is_auth_valid, :is_expiring, :is_html5_enabled,
        :is_mature, :is_subscriber_only, :is_web_only
-  cast Float, :duration
-  cast URI, :thumbnail_url
+  float :duration
+  uri :thumbnail_url
 end
