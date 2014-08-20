@@ -2,7 +2,7 @@ class Hooloo::Show < Hooloo::MozartHash
   def self.popular_today(args={})
     Hooloo.paginated_request('shows', {
       sort: 'popular_today'
-    }.merge(args)) { |g, x| g << Hooloo::Show.new(x['show']) }
+    }.merge(args), 30) { |g, x| g << Hooloo::Show.new(x['show']) }
   end
   def initialize(id)
     super
@@ -15,7 +15,7 @@ class Hooloo::Show < Hooloo::MozartHash
   def videos(season=1, args={})
     Hooloo.paginated_request("shows/#{id}/episodes", {
       season_number: season
-    }.merge(args)) { |g, x| g << Hooloo::Video.new(x['video']) }
+    }.merge(args), 30) { |g, x| g << Hooloo::Video.new(x['video']) }
   end
   bool :embed_permitted, :has_captions
   date :cache_time

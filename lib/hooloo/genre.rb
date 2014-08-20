@@ -15,7 +15,7 @@ class Hooloo::Genre < Hooloo::MozartHash
     Hooloo.paginated_request('shows', {
       genre: canonical_name,
       sort: 'release_with_popularity'
-    }.merge(args)) { |g, x| g << Hooloo::Show.new(x['show']) }
+    }.merge(args), 100) { |g, x| g << Hooloo::Show.new(x['show']) }
   end
   # List all genres known to Hulu
   #
