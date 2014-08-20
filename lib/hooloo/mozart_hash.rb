@@ -49,8 +49,8 @@ class Hooloo::MozartHash
   end
   # Honestly, we should generate methods when we initially parse the Hash
   # instead of doing this crap in method_missing.  I'll do that later.
-  def method_missing(method)
-    @obj[method.to_s]
+  def method_missing(method, *args, &block)
+    @obj[method.to_s] or super
   end
   def respond_to?(method)
     @obj.has_key? method.to_s or super
