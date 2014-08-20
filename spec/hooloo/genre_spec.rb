@@ -11,7 +11,7 @@ describe Hooloo::Genre do
   describe 'Shows List' do
     let(:genre) { Hooloo::Genre.new 'anime' }
     it 'should return multiple shows' do
-      genre.shows.length.must_be :>, 0
+      genre.shows.count.must_be :>, 0
     end
     it 'should convert shows to Show objects' do
       genre.shows.each { |x| x.must_be_instance_of Hooloo::Show }

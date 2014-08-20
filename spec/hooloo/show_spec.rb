@@ -5,7 +5,7 @@ describe Hooloo::Show do
   describe 'Popular Today' do
     let(:shows) { Hooloo::Show.popular_today }
     it 'should retrieve popular_today' do
-      shows.length.must_equal 10
+      shows.count.must_equal 10
     end
   end
   describe 'Loading' do

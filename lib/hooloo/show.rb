@@ -11,11 +11,10 @@ class Hooloo::Show < Hooloo::MozartHash
       @obj = id
     end
   end
-  def videos(season=1)
-    Hooloo.request("shows/#{id}/episodes", {
-      items_per_page: 128,
+  def videos(season=1, args={})
+    Hooloo.paginated_request("shows/#{id}/episodes", {
       season_number: season
-    })['data'].map { |x| Hooloo::Video.new x['video'] }
+    }.merge(args)) { |g, x| g << Hooloo::Video.new(x['video']) }
   end
   bool :embed_permitted, :has_captions
   date :cache_time

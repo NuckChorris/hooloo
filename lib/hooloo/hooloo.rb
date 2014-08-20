@@ -24,6 +24,19 @@ class Hooloo
       # TODO: check if we get 403'd and request a new token
       MultiJson.load open(request_uri(*args)).read
     end
+    def paginated_request(path, args={}, page_size=70, &block)
+      # TODO: cache responses
+      Enumerator.new do |g|
+        loop.with_index do |_, i|
+          response = request(path, {
+            items_per_page: page_size,
+            position: i * page_size
+          }.merge(args))['data']
+          response.each { |x| block.call(g, x) }
+          break if response.length < page_size
+        end
+      end
+    end
     def tokens
       @tokens or begin
         @tokens = Hash[open(hulu_uri).read.scan(/([A-Z]+)_DONUT = '([a-zA-Z0-9\-_\/]+)';$/)]

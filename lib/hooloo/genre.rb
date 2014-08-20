@@ -7,9 +7,15 @@ class Hooloo::Genre < Hooloo::MozartHash
       @obj = obj
     end
   end
-  def shows(args={items_per_page: 10, position: 0})
-    args.merge!({genre: canonical_name, sort: 'release_with_popularity'})
-    Hooloo.request('shows', args)['data'].map { |x| Hooloo::Show.new x['show'] }
+  # List all shows in this genre
+  #
+  # @param args [Hash] (see Hooloo#request)
+  # @return [Enumerator<Hooloo::Show>] List of shows
+  def shows(args={})
+    Hooloo.paginated_request('shows', {
+      genre: canonical_name,
+      sort: 'release_with_popularity'
+    }.merge(args)) { |g, x| g << Hooloo::Show.new(x['show']) }
   end
   # List all genres known to Hulu
   #
