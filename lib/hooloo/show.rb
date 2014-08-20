@@ -1,7 +1,8 @@
 class Hooloo::Show < Hooloo::MozartHash
-  def self.popular_today(args={limit: 10, position: 0})
-    args.merge!({sort: 'popular_today'})
-    Hooloo.request('shows', args)['data'].map { |x| new x['show'] }
+  def self.popular_today(args={})
+    Hooloo.paginated_request('shows', {
+      sort: 'popular_today'
+    }.merge(args)) { |g, x| g << Hooloo::Show.new(x['show']) }
   end
   def initialize(id)
     super
